@@ -17,8 +17,8 @@ DEFAULT_MAP_KWARGS = {
     'dragging': False,
     'no_touch': True,
     'control_scale': True,
-    'width': 75,
-    'height': 60,
+    'width': '75',
+    'height': '60',
 }
 
 # TODO:
