@@ -3,9 +3,11 @@
 D&eacute;rive > Play
 {% endblock %}
 {% block content %}
-    {{ map | safe }}
+<div class="container">
+    <div>{{ map | safe }}</div>
     <div style="color: #fff;" >
         {{ placename }}
     </div>
     <a class="btn btn-primary" href="/play/">Next</a>
+</div>
 {% endblock %}

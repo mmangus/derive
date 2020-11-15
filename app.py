@@ -14,11 +14,12 @@ DEFAULT_MAP_KWARGS = {
             ' <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors.',
     'zoom_control': False,
     'scrollWheelZoom': False,
+    'doubleClickZoom': False,
     'dragging': False,
     'no_touch': True,
     'control_scale': True,
-    'width': '75',
-    'height': '60',
+    'width': '100',
+    'height': '100',
 }
 
 # TODO:
