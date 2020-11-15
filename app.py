@@ -8,15 +8,15 @@ app = Flask(__name__)
 Bootstrap(app)
 
 DEFAULT_MAP_KWARGS = {
-    tiles="https://stamen-tiles-{s}.a.ssl.fastly.net/toner-background/{z}/{x}/{y}{r}.png",
-    attr='Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href='
-         '"http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy;'
-         ' <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors.',
-    zoom_control=False
-    scrollWheelZoom=False,
-    dragging=False,
-    no_touch=True,
-    control_scale=True,
+    'tiles': "https://stamen-tiles-{s}.a.ssl.fastly.net/toner-background/{z}/{x}/{y}{r}.png",
+    'attr': 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href='
+            '"http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy;'
+            ' <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors.',
+    'zoom_control': False,
+    'scrollWheelZoom': False,
+    'dragging': False,
+    'no_touch': True,
+    'control_scale': True,
 }
 
 # TODO:
@@ -27,7 +27,7 @@ DEFAULT_MAP_KWARGS = {
 LOCATIONS = [
     ("San Francisco", [37.76, -122.44]),
     ("Portland", [45.52, -122.68]),
-    
+
 ]
 
 
@@ -40,7 +40,7 @@ def homepage():
 def play():
     placename, coordinates = random.choice(LOCATIONS)
     map = Map(
-        
+        location=coordinates,
         **DEFAULT_MAP_KWARGS
     )._repr_html()
     return render_template('play.html', map=map, placename=placename)
