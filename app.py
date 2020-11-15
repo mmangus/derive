@@ -1,6 +1,12 @@
 import random
 
-from flask import Flask, render_template, redirect, url_for
+from flask import (
+    abort,
+    Flask,
+    redirect,
+    render_template,
+    url_for,
+)
 from flask_bootstrap import Bootstrap
 from folium import Map
 
@@ -48,7 +54,11 @@ def play(loc_id=None):
         loc_id = random.choice(range(len(LOCATIONS)))
         return redirect(url_for('play', loc_id=loc_id))
     
-    placename, coordinates = LOCATIONS[loc_id]
+    try:
+        loc_id = int(loc_id)
+    except ValueError:
+        abort(400)
+    placename, coordinates = LOCATIONS[int(loc_id)]
     map = Map(
         location=coordinates,
         **DEFAULT_MAP_KWARGS
