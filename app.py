@@ -46,7 +46,7 @@ def play(loc_id=None):
         #  - hook this up to a DB model
         #  - track session/user to prevent duplicates
         loc_id = random.choice(range(len(LOCATIONS)))
-        return redirect(url_for('play', loc_id))
+        return redirect(url_for('play', loc_id=loc_id))
     
     placename, coordinates = LOCATIONS[loc_id]
     map = Map(
