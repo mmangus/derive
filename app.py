@@ -42,5 +42,5 @@ def play():
     map = Map(
         location=coordinates,
         **DEFAULT_MAP_KWARGS
-    )._repr_html()
+    )._repr_html_()
     return render_template('play.html', map=map, placename=placename)
