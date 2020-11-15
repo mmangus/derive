@@ -1,6 +1,6 @@
 import random
 
-from flask import Flask, render_template
+from flask import Flask, render_template, redirect, url_for
 from flask_bootstrap import Bootstrap
 from folium import Map
 
@@ -30,7 +30,6 @@ DEFAULT_MAP_KWARGS = {
 LOCATIONS = [
     ("San Francisco", [37.76, -122.44]),
     ("Portland", [45.52, -122.68]),
-
 ]
 
 
@@ -40,10 +39,19 @@ def homepage():
 
 
 @app.route('/play/')
-def play():
-    placename, coordinates = random.choice(LOCATIONS)
+@app.route('/play/<loc_id>/')
+def play(loc_id=None):
+    if not loc_id:
+        # TODO:
+        #  - hook this up to a DB model
+        #  - track session/user to prevent duplicates
+        loc_id = random.choice(range(len(LOCATIONS)))
+        return redirect(url_for('play', loc_id))
+    
+    placename, coordinates = LOCATIONS[loc_id]
     map = Map(
         location=coordinates,
         **DEFAULT_MAP_KWARGS
-    )._repr_html_()
+    )._repr_html_()  # TODO override to e.g. change placeholder etc
+
     return render_template('play.html', map=map, placename=placename)
