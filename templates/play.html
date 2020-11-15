@@ -1,6 +1,6 @@
 {% extends "bootstrap/base.html" %}
 {% block content %}
-    {{ map }}
+    {{ map | safe }}
     <div style="color: #fff;" >
         {{ placename }}
     </div>
