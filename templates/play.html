@@ -6,19 +6,23 @@ D&eacute;rive > Play
 {{ super() }}
 {% endblock %}
 {% block content %}
-<div class="container">
-    <div>{{ map | safe }}</div>
-    <h3>Hints</h3>
-    {% for heading, value in hints %}
-        <h4>{{ heading }}</h4>
-        <p style="color: #fff;" >
-            {{ value }}
-        </p>
-    {% endfor %}
-    <h3>Answer</h3>
-    <p style="color: #fff;">
-        {{ place_name }}
-    </p>
-    <a class="btn btn-primary pull-right" href="/play/{{ next_loc }}/">Next</a>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col col-lg-9">{{ map | safe }}</div>
+        <div class="col col-sm-3">
+            <h3>Hints</h3>
+            {% for heading, value in hints %}
+                <h4 onclick="$('#hint-{{ heading }}').removeClass('hidden');">{{ heading }}</h4>
+                <p id="hint-{{ heading }}" class="hidden">
+                    {{ value }}
+                </p>
+            {% endfor %}
+            <h3 onclick="$('#answer').removeClass('hidden');">Answer</h3>
+            <p id="answer" class="hidden">
+                {{ place_name }}
+            </p>
+            <a class="btn btn-primary pull-right" href="/play/{{ next_loc }}/">Next</a>
+        </div>
+    </div>
 </div>
 {% endblock %}
