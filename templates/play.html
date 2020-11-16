@@ -24,7 +24,10 @@ D&eacute;rive > Play
     <div class="row">
         <div class="col col-lg-9">{{ map | safe }}</div>
         <div class="col col-sm-3">
-            <h3>Hints</h3>
+            <h3>
+                <span class="glyphicon glyphicon-globe"></span>
+                Hints
+            </h3>
             {% for heading, value in hints %}
                 <!-- TODO: BS collapse w/o toggling? -->
                 <h4 style="cursor: pointer;" 
@@ -43,7 +46,7 @@ D&eacute;rive > Play
             >
                 <!-- TODO: search / multiple choice modes -->
                 <span class="glyphicon glyphicon-map-marker"></span>
-                &nbsp;Answer
+                Answer &#x25be;
             </h3>
             <p id="answer" class="hidden">
                 {{ place_name }}
