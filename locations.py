@@ -44,7 +44,7 @@ def geonames_to_file(n=100):
     cities_df['coordinates'] = cities_df[['latitude', 'longitude']].values.tolist()
     top_n = cities_df.sort_values('population', ascending=False)[[
         'name', 'coordinates'
-    ]][:n].to_json('cities.json', index=False)
+    ]][:n].to_json('cities.json')
 
 
 def load():
