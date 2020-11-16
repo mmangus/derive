@@ -10,6 +10,10 @@ from flask import (
 from flask_bootstrap import Bootstrap
 from folium import Map
 
+# TODO temporary, see locations.py
+import locations
+LOCATIONS = locations.load_from_disk()
+
 app = Flask(__name__)
 Bootstrap(app)
 
@@ -28,40 +32,32 @@ DEFAULT_MAP_KWARGS = {
     'height': '100',
 }
 
-# TODO:
-#  - make a DB model for this
-#  - pull geonames data for global cities
-#  - store "hints" - hemisphere, country, parent admX?
-#  - dynamically set zoom level by city bounding box?
-LOCATIONS = [
-    ("San Francisco", [37.76, -122.44]),
-    ("Portland", [45.52, -122.68]),
-]
-
-
 @app.route('/')
 def homepage():
     return render_template('home.html')
 
 
-@app.route('/play/')
+# @app.route('/play/')  TODO handle this later
 @app.route('/play/<loc_id>/')
 def play(loc_id=None):
-    if not loc_id:
-        # TODO:
-        #  - hook this up to a DB model
-        #  - track session/user to prevent duplicates
-        loc_id = random.choice(range(len(LOCATIONS)))
-        return redirect(url_for('play', loc_id=loc_id))
+    # TODO:
+    #  - hook this up to a DB model
+    #  - randomize ordering (or create sets??)
+    #  - track session/user to prevent duplicates
+    # 
+    # if not loc_id:
+    #    loc_id = random.choice(range(len(LOCATIONS)))
+    #    return redirect(url_for('play', loc_id=loc_id))
     
     try:
         loc_id = int(loc_id)
     except ValueError:
         abort(400)
-    placename, coordinates = LOCATIONS[int(loc_id)]
+    _, coordinates = LOCATIONS[int(loc_id)]
+    next_loc = loc_id + 1 if loc_id < len(LOCATIONS) else 0
     map = Map(
         location=coordinates,
         **DEFAULT_MAP_KWARGS
     )._repr_html_()  # TODO override to e.g. change placeholder etc
 
-    return render_template('play.html', map=map, placename=placename)
+    return render_template('play.html', map=map, next_loc=next_loc)
