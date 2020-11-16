@@ -61,7 +61,7 @@ def play(loc_id=None):
         ("Continent (ocean for islands)", place_data.continent_or_ocean),
         ("Country", place_data.country_name),
     ]
-    next_loc = loc_id + 1 if loc_id < len(LOCATIONS) else 0
+    next_loc_id = loc_id + 1 if loc_id < len(LOCATIONS) else 0
     map = Map(
         location=place_data.coordinates,
         **DEFAULT_MAP_KWARGS
@@ -70,8 +70,8 @@ def play(loc_id=None):
     return render_template(
         "play.html",
         map=map,
-        loc_id = loc_id
-        next_loc_id=next_loc,
+        loc_id=loc_id,
+        next_loc_id=next_loc_id,
         place_name=place_name,
         hints=hints,
     )
