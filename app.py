@@ -38,7 +38,7 @@ def homepage():
     return render_template("home.html")
 
 
-# @app.route("/play/")  TODO handle this later
+@app.route("/play/")
 @app.route("/play/<loc_id>/")
 def play(loc_id=None):
     # TODO:
