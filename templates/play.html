@@ -2,12 +2,19 @@
 {% block title %}
 D&eacute;rive > Play
 {% endblock %}
+{% block head %}
+{{ super() }}
+{% endblock %}
 {% block content %}
 <div class="container">
     <div>{{ map | safe }}</div>
-    <div style="color: #fff;" >
-        {{ placename }}
-    </div>
+    <h4>Hints</h4>
+    {% for heading, value in hints %}
+        <h5>{{ heading }}</h5>
+        <p style="color: #fff;" >
+            {{ value }}
+        </p>
+    {% endfor %}
     <a class="btn btn-primary pull-right" href="/play/{{ next_loc }}/">Next</a>
 </div>
 {% endblock %}
