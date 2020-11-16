@@ -12,7 +12,7 @@ from folium import Map
 
 # TODO temporary, see locations.py
 import locations
-LOCATIONS = locations.load_from_disk()
+LOCATIONS = locations.load()
 
 app = Flask(__name__)
 Bootstrap(app)
