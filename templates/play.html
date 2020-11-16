@@ -12,8 +12,8 @@ D&eacute;rive > Play
         <div class="col col-sm-3">
             <h3>Hints</h3>
             {% for heading, value in hints %}
-                <h4 onclick="$('#hint-{{ heading }}').removeClass('hidden');">{{ heading }}</h4>
-                <p id="hint-{{ heading }}" class="hidden">
+                <h4 onclick="$('#hint-{{ loop.counter }}').removeClass('hidden');">{{ heading }}</h4>
+                <p id="hint-{{ loop.counter }}" class="hidden">
                     {{ value }}
                 </p>
             {% endfor %}
