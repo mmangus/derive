@@ -71,6 +71,6 @@ def play(loc_id=None):
         "play.html",
         map=map,
         next_loc=next_loc,
-        placen_name=place_name,
+        place_name=place_name,
         hints=hints,
     )
