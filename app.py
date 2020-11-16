@@ -45,10 +45,9 @@ def play(loc_id=None):
     #  - hook this up to a DB model
     #  - randomize ordering (or create sets??)
     #  - track session/user to prevent duplicates
-    # 
-    # if not loc_id:
-    #    loc_id = random.choice(range(len(LOCATIONS)))
-    #    return redirect(url_for("play", loc_id=loc_id))
+    if not loc_id:
+       loc_id = random.choice(range(len(LOCATIONS)))
+       return redirect(url_for("play", loc_id=loc_id))
     
     try:
         loc_id = int(loc_id)
@@ -59,7 +58,7 @@ def play(loc_id=None):
     hints = [
         ("Hemisphere (latitude)", place_data.hemisphere_lat),
         ("Hemisphere (longitude)", place_data.hemisphere_lon),
-        ("Continent (ocean for islands)", place_data.continent_or_cean),
+        ("Continent (ocean for islands)", place_data.continent_or_ocean),
         ("Country", place_data.country_name),
     ]
     next_loc = loc_id + 1 if loc_id < len(LOCATIONS) else 0
