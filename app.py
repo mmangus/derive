@@ -70,7 +70,8 @@ def play(loc_id=None):
     return render_template(
         "play.html",
         map=map,
-        next_loc=next_loc,
+        loc_id = loc_id
+        next_loc_id=next_loc,
         place_name=place_name,
         hints=hints,
     )

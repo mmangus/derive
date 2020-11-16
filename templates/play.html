@@ -2,8 +2,22 @@
 {% block title %}
 D&eacute;rive > Play
 {% endblock %}
-{% block head %}
-{{ super() }}
+{% block navbar %}
+<nav>
+    <ol class="breadcrumb">
+        <li>
+            <strong>
+                <a href="/">D&eacute;rive</a>
+            </strong>
+        </li>
+        <li>
+            <a href="/play/">Play</a>
+        </li>
+        <li class="active">
+            Place {{ loc_id }}
+        </li>
+    </ol>
+</nav>
 {% endblock %}
 {% block content %}
 <div class="container-fluid">
@@ -12,6 +26,7 @@ D&eacute;rive > Play
         <div class="col col-sm-3">
             <h3>Hints</h3>
             {% for heading, value in hints %}
+                <!-- TODO: BS collapse w/o toggling? -->
                 <h4 style="cursor: pointer;" 
                     onclick="$('#hint-{{ loop.index }}').removeClass('hidden'); 
                              $(this).css('cursor', 'default');"
@@ -27,12 +42,13 @@ D&eacute;rive > Play
                 $(this).css('cursor', 'default');" 
             >
                 <!-- TODO: search / multiple choice modes -->
-                Answer &#x25be;
+                <span class="glyphicon glyphicon-map-marker"></span>
+                &nbsp;Answer
             </h3>
             <p id="answer" class="hidden">
                 {{ place_name }}
             </p>
-            <a class="btn btn-primary pull-right" href="/play/{{ next_loc }}/">Next</a>
+            <a class="btn btn-primary pull-right" href="/play/{{ next_loc_id }}/">Next</a>
         </div>
     </div>
 </div>
