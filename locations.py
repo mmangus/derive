@@ -44,10 +44,11 @@ def geonames_to_file(n=100):
     cities_df['coordinates'] = cities_df[['latitude', 'longitude']].values.tolist()
     top_n = cities_df.sort_values('population', ascending=False)[[
         'name', 'coordinates'
-    ]][:n].to_csv('cities.csv', index=False)
+    ]][:n].to_json('cities.json', index=False)
 
 
 def load():
-    if not os.path.exists("cities.csv"):
+    if not os.path.exists("cities.json"):
         geonames_to_file()
-    return pd.read_csv("cities.csv").values
+    # could just use json module but we've got pandas imported already
+    return pd.read_json("cities.json").values
